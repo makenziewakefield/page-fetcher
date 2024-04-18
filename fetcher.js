@@ -6,7 +6,8 @@ const fetcher = (url, filePath) => {
     if (!error && response.statusCode === 200) {
       fs.writeFile(filePath, body, (err) => {
         if (!err) {
-          console.log(`Data from ${url} has been saved to ${filePath}`);
+          const fileSize = Buffer.byteLength(body, 'utf8');
+          console.log(`Downloaded and saved ${fileSize} bytes to ${filePath}`);
         }
       })
     }
